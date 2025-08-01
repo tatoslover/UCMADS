@@ -4,7 +4,6 @@
     Date: 22 October 2021
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 TEAM_OPTIONS = ["Mavericks", "Lakers", "Knicks"]
@@ -16,7 +15,7 @@ CONTINUE_ERROR_MESSAGE = "Options are Y or N"
 STATISTIC_OPTIONS = ["3%","3 Attempts","Points"]
 STATISTIC_ERROR_MESSAGE = "Options are 3%, 3 Attempts, or Points"
 WELCOME_MESSAGE = "Hello. This program is desgined to help visualise trends in data. The sample dataset is from the NBA which is the premier basketball league in the USA. There is data for three teams: Dallas Mavericks, Los Angeles Lakers, and New York Knicks.  The data also covers three time periods: 2000, 2010, and 2020.  Statistics included are: three point percentage, three point attempts, points, and win percentage.  By graphing various configerations one can observe trends over time and across teams."
-    
+
 def prompt_team():
     """ Prompts the user for which teams they want to use.
     """
@@ -54,12 +53,13 @@ def statistic_wanted():
 def data_processor_team(team):
     """ Processes the data based on the team input ready for further processing.
     """
-    infile = open("Project data Test.txt")
+    infile = open("ProjectData.txt")
     lines = infile.read().splitlines()
     infile.close()
     mavericks = lines[5:8]
     lakers = lines[8:11]
     knicks = lines[11:14]
+    team_data = []  # Initialize with default value
     if team == "Mavericks":
         team_data = mavericks
     elif team == "Lakers":
@@ -78,6 +78,13 @@ def data_processor_season(season, team_data, statistic):
     data_2020 = team_2020.split()
     data_2010 = team_2010.split()
     data_2000 = team_2000.split()
+    # Initialize variables with default empty lists
+    win = []
+    three_percentage = []
+    three_attempts = []
+    points = []
+    processed_data = []
+
     if season == "Regular":
         win = [data_2020[4], data_2010[4], data_2000[4]]
         three_percentage = [data_2020[7], data_2010[7], data_2000[7]]
@@ -93,6 +100,10 @@ def data_processor_season(season, team_data, statistic):
         three_percentage = [data_2020[6], data_2010[6], data_2000[6]]
         three_attempts = [data_2020[12], data_2010[12], data_2000[12]]
         points = [data_2020[9], data_2010[9], data_2000[9]]
+
+    # Initialize processed_data with default
+    processed_data = [win, three_percentage]  # Default to 3% statistic
+
     if statistic == "3%":
         processed_data = [win, three_percentage]
     elif statistic == "3 Attempts":
@@ -114,15 +125,15 @@ def graph_results(processed_data, team, statistic):
     axes.legend()
     ticks = range(0, 130, 10)
     axes.set_xticks(ticks)
-    axes.set_xticklabels(ticks)
-    axes.set_yticks(ticks)   
-    axes.set_yticklabels(ticks)
+    axes.set_xticklabels([str(t) for t in ticks])
+    axes.set_yticks(ticks)
+    axes.set_yticklabels([str(t) for t in ticks])
     axes.set_title(f"Scatterplot of win % vs {statistic} for the {team} 2000, 2010, and 2020 seasons")
     axes.set_xlabel(f"{statistic}")
     axes.set_ylabel("Win %")
     axes.grid(True)
     plt.show()
-    
+
 
 def prompt_continue():
     """ Prompts the user whether they want to add more stats to the graph.
@@ -145,9 +156,9 @@ def main():
     statistic = statistic_wanted()
     team_data = data_processor_team(team)
     processed_data = data_processor_season(season, team_data, statistic)
-    graph = graph_results(processed_data, team, statistic)
+    graph_results(processed_data, team, statistic)
     continued = prompt_continue()
     if continued == "Y":
-        main()    
-    
+        main()
+
 main()

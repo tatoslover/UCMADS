@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NBA Data Visualization Portfolio | COSC480 Project</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <style>
+            :root {
+                --nba-blue: #17408b;
+                --nba-red: #c9082a;
+                --light-gray: #f5f5f5;
+                --dark-gray: #333;
+                --medium-gray: #777;
+                --white: #fff;
+                --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                --border-radius: 8px;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: var(--dark-gray);
+                background-color: var(--light-gray);
+                padding-bottom: 50px;
+            }
+
+            header {
+                background: linear-gradient(
+                    135deg,
+                    var(--nba-blue),
+                    var(--nba-red)
+                );
+                color: var(--white);
+                padding: 2rem 0;
+                text-align: center;
+                box-shadow: var(--box-shadow);
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .header-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                font-weight: 300;
+            }
+
+            .profile-links {
+                display: flex;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .profile-links a {
+                color: var(--white);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 10px;
+                border-radius: 20px;
+                background-color: rgba(255, 255, 255, 0.2);
+                transition: background-color 0.3s;
+            }
+
+            .profile-links a:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            main {
+                padding-top: 2rem;
+            }
+
+            section {
+                background-color: var(--white);
+                margin-bottom: 2rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                overflow: hidden;
+            }
+
+            .section-header {
+                background-color: var(--nba-blue);
+                color: var(--white);
+                padding: 1rem 2rem;
+                font-size: 1.5rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .section-content {
+                padding: 2rem;
+            }
+
+            .project-overview {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            @media (max-width: 768px) {
+                .project-overview {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .project-description p {
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .project-image {
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                box-shadow: var(--box-shadow);
+            }
+
+            .project-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .features-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .feature-card {
+                background-color: var(--light-gray);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                transition: transform 0.3s;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .feature-card h3 {
+                color: var(--nba-blue);
+                margin-bottom: 0.8rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .tech-stack {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 1.5rem;
+            }
+
+            .tech-badge {
+                background-color: var(--light-gray);
+                color: var(--dark-gray);
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .notebook-container {
+                margin-top: 1.5rem;
+                border: 1px solid #ddd;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+            }
+
+            .notebook-toolbar {
+                background-color: #f0f0f0;
+                padding: 0.8rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .notebook-title {
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .notebook-actions {
+                display: flex;
+                gap: 10px;
+            }
+
+            .notebook-actions a {
+                text-decoration: none;
+                color: var(--dark-gray);
+                background-color: var(--white);
+                padding: 5px 12px;
+                border-radius: 4px;
+                font-size: 0.9rem;
+                border: 1px solid #ddd;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                transition: all 0.2s;
+            }
+
+            .notebook-actions a:hover {
+                background-color: var(--light-gray);
+            }
+
+            .viz-samples {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .viz-card {
+                border: 1px solid #ddd;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                transition: transform 0.3s;
+            }
+
+            .viz-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--box-shadow);
+            }
+
+            .viz-image {
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .viz-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s;
+            }
+
+            .viz-card:hover .viz-image img {
+                transform: scale(1.05);
+            }
+
+            .viz-caption {
+                padding: 1rem;
+                background-color: var(--white);
+            }
+
+            .viz-caption h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+                color: var(--nba-blue);
+            }
+
+            .cta-buttons {
+                display: flex;
+                gap: 15px;
+                margin-top: 2rem;
+                justify-content: center;
+            }
+
+            .cta-button {
+                display: inline-block;
+                padding: 12px 25px;
+                background-color: var(--nba-blue);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: 500;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .cta-button:hover {
+                background-color: #0c2b5e;
+                transform: translateY(-2px);
+                box-shadow: var(--box-shadow);
+            }
+
+            .cta-button.secondary {
+                background-color: var(--white);
+                color: var(--nba-blue);
+                border: 2px solid var(--nba-blue);
+            }
+
+            .cta-button.secondary:hover {
+                background-color: #f0f5ff;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 3rem;
+                color: var(--medium-gray);
+                font-size: 0.9rem;
+            }
+
+            .insights-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .insight-card {
+                background-color: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                overflow: hidden;
+            }
+
+            .insight-header {
+                background-color: var(--nba-blue);
+                color: var(--white);
+                padding: 1rem;
+                font-weight: 500;
+            }
+
+            .insight-body {
+                padding: 1.5rem;
+            }
+
+            .insight-body p {
+                margin-bottom: 1rem;
+            }
+
+            .insight-data {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 1rem;
+            }
+
+            .data-point {
+                text-align: center;
+            }
+
+            .data-value {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--nba-blue);
+            }
+
+            .data-label {
+                font-size: 0.9rem;
+                color: var(--medium-gray);
+            }
+
+            iframe {
+                border: none;
+                width: 100%;
+                height: 600px;
+                display: block;
+            }
+
+            /* Add print styles to handle notebook printing */
+            @media print {
+                iframe {
+                    height: auto;
+                    page-break-inside: avoid;
+                }
+
+                .notebook-container {
+                    break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <h1>NBA Data Visualization Portfolio</h1>
+                    <div class="subtitle">
+                        COSC480 Data Analysis & Visualization Project
+                    </div>
+                    <div class="profile-links">
+                        <a
+                            href="https://github.com/yourusername"
+                            target="_blank"
+                            ><i class="fab fa-github"></i> GitHub</a
+                        >
+                        <a
+                            href="https://linkedin.com/in/yourprofile"
+                            target="_blank"
+                            ><i class="fab fa-linkedin"></i> LinkedIn</a
+                        >
+                        <a href="mailto:your.email@example.com"
+                            ><i class="far fa-envelope"></i> Email</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section>
+                <div class="section-header">
+                    <i class="fas fa-basketball-ball"></i> Project Overview
+                </div>
+                <div class="section-content">
+                    <div class="project-overview">
+                        <div class="project-description">
+                            <p>
+                                This interactive data visualization project
+                                analyzes NBA statistics from three teams (Dallas
+                                Mavericks, Los Angeles Lakers, and New York
+                                Knicks) across three time periods (2000, 2010,
+                                2020).
+                            </p>
+                            <p>
+                                The application allows users to explore
+                                relationships between key performance metrics
+                                like three-point shooting percentage,
+                                three-point attempt volume, and scoring with
+                                team success as measured by win percentage.
+                            </p>
+                            <p>
+                                Through this analysis, the project reveals the
+                                evolution of NBA basketball over two decades,
+                                particularly the shift toward perimeter-oriented
+                                play and its impact on team performance.
+                            </p>
+
+                            <div class="tech-stack">
+                                <div class="tech-badge">
+                                    <i class="fab fa-python"></i> Python
+                                </div>
+                                <div class="tech-badge">
+                                    <i class="fas fa-chart-line"></i> Matplotlib
+                                </div>
+                                <div class="tech-badge">
+                                    <i class="fas fa-table"></i> Pandas
+                                </div>
+                                <div class="tech-badge">
+                                    <i class="fas fa-calculator"></i> NumPy
+                                </div>
+                                <div class="tech-badge">
+                                    <i class="fas fa-terminal"></i> Jupyter
+                                </div>
+                            </div>
+
+                            <div class="cta-buttons">
+                                <a
+                                    href="#interactive-notebook"
+                                    class="cta-button"
+                                    ><i class="fas fa-play"></i> View
+                                    Interactive Notebook</a
+                                >
+                                <a href="#cli-demo" class="cta-button"
+                                    ><i class="fas fa-terminal"></i> Try CLI
+                                    Demo</a
+                                >
+                                <a
+                                    href="https://github.com/yourusername/your-repo"
+                                    target="_blank"
+                                    class="cta-button secondary"
+                                    ><i class="fab fa-github"></i> View Source
+                                    Code</a
+                                >
+                            </div>
+                        </div>
+                        <div class="project-image">
+                            <img
+                                src="https://www.nba.com/assets/logos/teams/primary/web/NBA.svg"
+                                alt="NBA basketball visualization"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <i class="fas fa-lightbulb"></i> Key Insights
+                </div>
+                <div class="section-content">
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                Three-Point Revolution
+                            </div>
+                            <div class="insight-body">
+                                <p>
+                                    All teams show dramatic increases in
+                                    three-point attempt volume from 2000 to
+                                    2020, reflecting the league-wide shift
+                                    toward perimeter shooting.
+                                </p>
+                                <div class="insight-data">
+                                    <div class="data-point">
+                                        <div class="data-value">+116%</div>
+                                        <div class="data-label">
+                                            Increase in 3PT Attempts
+                                        </div>
+                                    </div>
+                                    <div class="data-point">
+                                        <div class="data-value">37%</div>
+                                        <div class="data-label">
+                                            Avg 3PT% (2020)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                Efficiency vs. Volume
+                            </div>
+                            <div class="insight-body">
+                                <p>
+                                    Despite significantly increased shooting
+                                    volume, three-point percentages have
+                                    remained relatively stable, indicating teams
+                                    have adapted their player development and
+                                    selection.
+                                </p>
+                                <div class="insight-data">
+                                    <div class="data-point">
+                                        <div class="data-value">+19.7</div>
+                                        <div class="data-label">
+                                            3PT Attempts Increase
+                                        </div>
+                                    </div>
+                                    <div class="data-point">
+                                        <div class="data-value">+0.5%</div>
+                                        <div class="data-label">
+                                            3PT% Change
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-header">Team Adaptation</div>
+                            <div class="insight-body">
+                                <p>
+                                    Teams show distinct adaptation patterns to
+                                    the perimeter revolution, with the Mavericks
+                                    demonstrating the most consistent growth in
+                                    three-point volume while maintaining
+                                    efficiency.
+                                </p>
+                                <div class="insight-data">
+                                    <div class="data-point">
+                                        <div class="data-value">36.5</div>
+                                        <div class="data-label">
+                                            Mavericks 3PT Attempts (2020)
+                                        </div>
+                                    </div>
+                                    <div class="data-point">
+                                        <div class="data-value">37%</div>
+                                        <div class="data-label">
+                                            Mavericks 3PT% (2020)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <i class="fas fa-cogs"></i> Application Features
+                </div>
+                <div class="section-content">
+                    <div class="features-list">
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-sliders-h"></i> Interactive
+                                Data Selection
+                            </h3>
+                            <p>
+                                Users can select from multiple teams, seasons
+                                (regular/playoff/both), and statistics to
+                                customize the analysis.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-chart-scatter"></i> Dynamic
+                                Visualization
+                            </h3>
+                            <p>
+                                The application generates scatter plots showing
+                                relationships between selected statistics and
+                                win percentages.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-file-export"></i> Data Export
+                            </h3>
+                            <p>
+                                Automatically saves visualizations as
+                                high-resolution PNG files and exports data to
+                                CSV for further analysis.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-calculator"></i> Statistical
+                                Summary
+                            </h3>
+                            <p>
+                                Provides detailed statistical analysis including
+                                averages and changes over time.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-terminal"></i> User-Friendly
+                                Interface
+                            </h3>
+                            <p>
+                                Intuitive command-line interface with clear
+                                prompts and robust error handling.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-clock"></i> Time-Series
+                                Analysis
+                            </h3>
+                            <p>
+                                Visualizes trends across three distinct time
+                                periods (2000, 2010, 2020) to show evolution.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interactive-notebook">
+                <div class="section-header">
+                    <i class="fas fa-book-open"></i> Interactive Notebook
+                </div>
+                <div class="section-content">
+                    <p>
+                        Explore the full data analysis in this interactive
+                        Jupyter notebook. The notebook contains exploratory data
+                        analysis, visualizations, and statistical insights about
+                        NBA performance metrics. The notebook was successfully
+                        converted to HTML format using
+                        <code>jupyter nbconvert</code>.
+                    </p>
+
+                    <div class="notebook-container">
+                        <div class="notebook-toolbar">
+                            <div class="notebook-title">
+                                <i class="fab fa-python"></i>
+                                exploratory_analysis.ipynb
+                            </div>
+                            <div class="notebook-actions">
+                                <a
+                                    href="https://github.com/yourusername/your-repo/blob/main/exploratory_analysis.ipynb"
+                                    target="_blank"
+                                    ><i class="fab fa-github"></i> View on
+                                    GitHub</a
+                                >
+                                <a
+                                    href="https://colab.research.google.com/github/yourusername/your-repo/blob/main/exploratory_analysis.ipynb"
+                                    target="_blank"
+                                    ><i class="fas fa-external-link-alt"></i>
+                                    Open in Colab</a
+                                >
+                                <a href="exploratory_analysis.ipynb" download
+                                    ><i class="fas fa-download"></i> Download</a
+                                >
+                            </div>
+                        </div>
+                        <div
+                            style="
+                                overflow: auto;
+                                max-height: 600px;
+                                border: 1px solid #ddd;
+                                padding: 20px;
+                                background-color: #f8f9fa;
+                            "
+                        >
+                            <p style="text-align: center; font-size: 1.2rem">
+                                <i
+                                    class="fas fa-file-code"
+                                    style="
+                                        font-size: 2rem;
+                                        color: #17408b;
+                                        margin-bottom: 15px;
+                                        display: block;
+                                    "
+                                ></i>
+                                The Jupyter notebook content is available at:<br />
+                                <a
+                                    href="exploratory_analysis.html"
+                                    target="_blank"
+                                    style="
+                                        color: #17408b;
+                                        font-weight: bold;
+                                        text-decoration: underline;
+                                    "
+                                >
+                                    exploratory_analysis.html
+                                </a>
+                            </p>
+                            <p style="margin-top: 15px; text-align: center">
+                                Please open the HTML file directly to view the
+                                notebook content due to browser security
+                                restrictions with local files.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p
+                        class="section-note"
+                        style="margin-top: 15px; font-size: 0.9rem; color: #666"
+                    >
+                        <i class="fas fa-info-circle"></i> Note: To run this
+                        notebook interactively, download it or open it in Google
+                        Colab using the buttons above.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <i class="fas fa-chart-bar"></i> Visualization Samples
+                </div>
+                <div class="section-content">
+                    <div class="viz-samples">
+                        <div class="viz-card">
+                            <div class="viz-image">
+                                <img
+                                    src="https://www.basketball-reference.com/images/bbr-logo.svg"
+                                    alt="3-Point Percentage Visualization"
+                                />
+                            </div>
+                            <div class="viz-caption">
+                                <h3>Win % vs. 3-Point Percentage</h3>
+                                <p>
+                                    Explores the relationship between
+                                    three-point shooting efficiency and team
+                                    success.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="viz-card">
+                            <div class="viz-image">
+                                <img
+                                    src="https://www.basketball-reference.com/images/bbr-logo.svg"
+                                    alt="3-Point Attempts Visualization"
+                                />
+                            </div>
+                            <div class="viz-caption">
+                                <h3>Win % vs. 3-Point Attempts</h3>
+                                <p>
+                                    Analyzes how three-point attempt volume
+                                    correlates with winning percentage.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="viz-card">
+                            <div class="viz-image">
+                                <img
+                                    src="https://www.basketball-reference.com/images/bbr-logo.svg"
+                                    alt="Points Visualization"
+                                />
+                            </div>
+                            <div class="viz-caption">
+                                <h3>Win % vs. Points</h3>
+                                <p>
+                                    Examines the connection between overall
+                                    scoring and team success.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <i class="fas fa-code"></i> Technical Implementation
+                </div>
+                <div class="section-content">
+                    <p>
+                        This project demonstrates several technical skills and
+                        programming concepts:
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-layer-group"></i> Modular
+                                Design
+                            </h3>
+                            <p>
+                                The application follows a modular design with
+                                separate functions for user input, data
+                                processing, and visualization generation.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Error Handling
+                            </h3>
+                            <p>
+                                Implements robust error handling and input
+                                validation to prevent runtime errors and improve
+                                user experience.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3>
+                                <i class="fas fa-chart-line"></i> Data
+                                Visualization
+                            </h3>
+                            <p>
+                                Uses matplotlib to create informative and
+                                visually appealing scatter plots with
+                                appropriate labels and formatting.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3><i class="fas fa-file-alt"></i> File I/O</h3>
+                            <p>
+                                Demonstrates file input/output operations for
+                                reading data and saving results in various
+                                formats.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons" style="margin-top: 30px">
+                        <a
+                            href="ProjectCode_Enhanced.py"
+                            download
+                            class="cta-button"
+                            ><i class="fas fa-download"></i> Download Enhanced
+                            Code</a
+                        >
+                        <a
+                            href="project_report.md"
+                            target="_blank"
+                            class="cta-button secondary"
+                            ><i class="fas fa-file-alt"></i> View Project
+                            Report</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section id="cli-demo">
+                <div class="section-header">
+                    <i class="fas fa-terminal"></i> CLI Demonstration
+                </div>
+                <div class="section-content">
+                    <p>
+                        Experience how the NBA Data Visualization tool works
+                        through this interactive command-line interface
+                        simulation. This demonstrates the user interaction flow
+                        and visualizations generated by the application.
+                    </p>
+
+                    <div
+                        style="
+                            margin-top: 20px;
+                            font-family: &quot;Courier New&quot;, monospace;
+                            background-color: #1e1e1e;
+                            color: #dcdcdc;
+                            padding: 20px;
+                            border-radius: 8px;
+                            overflow: auto;
+                        "
+                    >
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6">$</span>
+                            <span style="color: #dcdcdc"
+                                >python ProjectCode_Enhanced.py</span
+                            >
+                        </div>
+
+                        <div
+                            style="
+                                background-color: #2d2d2d;
+                                padding: 10px;
+                                margin: 10px 0;
+                                border-left: 3px solid #569cd6;
+                                white-space: pre-wrap;
+                            "
+                        >
+                            ==================================================
+                            Hello. This program is designed to help visualize
+                            trends in data. The sample dataset is from the NBA
+                            which is the premier basketball league in the USA.
+                            There is data for three teams: Dallas Mavericks, Los
+                            Angeles Lakers, and New York Knicks. The data also
+                            covers three time periods: 2000, 2010, and 2020.
+                            Statistics included are: three point percentage,
+                            three point attempts, points, and win percentage. By
+                            graphing various configurations one can observe
+                            trends over time and across teams.
+                            ==================================================
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Team options are ['Mavericks', 'Lakers',
+                                'Knicks']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Which team do you want to use?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Mavericks</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Season options are ['Regular', 'Playoff',
+                                'Both']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Do you want to use the regular season or
+                                playoffs or both?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Regular</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Statistic options are ['3%', '3 Attempts',
+                                'Points']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Which statistic do you want to plot (x-axis)
+                                against wins (y-axis)?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >3%</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Successfully read data file:
+                                /Users/samuellove/Documents/GitHub/UCMADS/COSC480/ProjectData.txt</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Total lines in file: 14</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Processing data...</span
+                            >
+                        </div>
+
+                        <div
+                            style="
+                                padding: 10px 0;
+                                border: 1px solid #3c3c3c;
+                                margin: 15px 0;
+                            "
+                        >
+                            <span style="color: #569cd6">
+                                ==================================================<br />
+                                SUMMARY STATISTICS FOR MAVERICKS (REGULAR
+                                SEASON)<br />
+                                ==================================================<br />
+                                Win Percentage:<br />
+                                &nbsp;&nbsp;2020: 58.00%<br />
+                                &nbsp;&nbsp;2010: 70.00%<br />
+                                &nbsp;&nbsp;2000: 65.00%<br />
+                                &nbsp;&nbsp;Average: 64.33%<br />
+                                &nbsp;&nbsp;Change 2000 to 2020: -7.00%<br />
+                                <br />
+                                3%:<br />
+                                &nbsp;&nbsp;2020: 36.00<br />
+                                &nbsp;&nbsp;2010: 37.00<br />
+                                &nbsp;&nbsp;2000: 38.00<br />
+                                &nbsp;&nbsp;Average: 37.00<br />
+                                &nbsp;&nbsp;Change 2000 to 2020: -2.00<br />
+                                ==================================================
+                            </span>
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Data exported to CSV:
+                                Mavericks_Regular_3%_20230524_153045.csv</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Generating visualization...</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Graph saved as:
+                                Mavericks_3%_Regular_2023-05-24_15:30:45.png</span
+                            >
+                        </div>
+
+                        <div
+                            style="
+                                text-align: center;
+                                margin: 20px 0;
+                                background-color: #fff;
+                                padding: 10px;
+                                border-radius: 4px;
+                            "
+                        >
+                            <img
+                                src="https://www.basketball-reference.com/images/bbr-logo.svg"
+                                alt="Visualization Example"
+                                style="
+                                    max-width: 100%;
+                                    height: auto;
+                                    max-height: 300px;
+                                "
+                            />
+                            <div
+                                style="
+                                    color: #333;
+                                    padding-top: 10px;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                "
+                            >
+                                <strong
+                                    >Scatterplot of Win % vs 3% for the
+                                    Mavericks (Regular Season Data: 2000, 2010,
+                                    and 2020)</strong
+                                >
+                            </div>
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Continue options are ['Y', 'N']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Do you want to repeat the process?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Y</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Team options are ['Mavericks', 'Lakers',
+                                'Knicks']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Which team do you want to use?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Lakers</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Season options are ['Regular', 'Playoff',
+                                'Both']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Do you want to use the regular season or
+                                playoffs or both?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Playoff</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Statistic options are ['3%', '3 Attempts',
+                                'Points']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Which statistic do you want to plot (x-axis)
+                                against wins (y-axis)?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >Points</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Successfully read data file:
+                                /Users/samuellove/Documents/GitHub/UCMADS/COSC480/ProjectData.txt</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Processing data...</span
+                            >
+                        </div>
+
+                        <div
+                            style="
+                                padding: 10px 0;
+                                border: 1px solid #3c3c3c;
+                                margin: 15px 0;
+                            "
+                        >
+                            <span style="color: #569cd6">
+                                ==================================================<br />
+                                SUMMARY STATISTICS FOR LAKERS (PLAYOFF
+                                SEASON)<br />
+                                ==================================================<br />
+                                Win Percentage:<br />
+                                &nbsp;&nbsp;2020: 33.00%<br />
+                                &nbsp;&nbsp;2010: 40.00%<br />
+                                &nbsp;&nbsp;2000: 94.00%<br />
+                                &nbsp;&nbsp;Average: 55.67%<br />
+                                &nbsp;&nbsp;Change 2000 to 2020: -61.00%<br />
+                                <br />
+                                Points:<br />
+                                &nbsp;&nbsp;2020: 97.50<br />
+                                &nbsp;&nbsp;2010: 93.20<br />
+                                &nbsp;&nbsp;2000: 103.40<br />
+                                &nbsp;&nbsp;Average: 98.03<br />
+                                &nbsp;&nbsp;Change 2000 to 2020: -5.90<br />
+                                ==================================================
+                            </span>
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Data exported to CSV:
+                                Lakers_Playoff_Points_20230524_153145.csv</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Generating visualization...</span
+                            ><br />
+                            <span style="color: #569cd6"
+                                >Graph saved as:
+                                Lakers_Points_Playoff_2023-05-24_15:31:45.png</span
+                            >
+                        </div>
+
+                        <div
+                            style="
+                                text-align: center;
+                                margin: 20px 0;
+                                background-color: #fff;
+                                padding: 10px;
+                                border-radius: 4px;
+                            "
+                        >
+                            <img
+                                src="https://www.basketball-reference.com/images/bbr-logo.svg"
+                                alt="Visualization Example"
+                                style="
+                                    max-width: 100%;
+                                    height: auto;
+                                    max-height: 300px;
+                                "
+                            />
+                            <div
+                                style="
+                                    color: #333;
+                                    padding-top: 10px;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                "
+                            >
+                                <strong
+                                    >Scatterplot of Win % vs Points for the
+                                    Lakers (Playoff Season Data: 2000, 2010, and
+                                    2020)</strong
+                                >
+                            </div>
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6"
+                                >Continue options are ['Y', 'N']</span
+                            ><br />
+                            <span style="color: #dcdcdc"
+                                >Do you want to repeat the process?</span
+                            >
+                            <span
+                                style="
+                                    color: #ce9178;
+                                    border-bottom: 1px solid #ce9178;
+                                "
+                                >N</span
+                            >
+                        </div>
+
+                        <div style="padding: 10px 0">
+                            <span style="color: #569cd6">
+                                ==================================================<br />
+                                Session ended at: 2023-05-24 15:32:10<br />
+                                Total session duration: 126.45 seconds<br />
+                                Thank you for using the NBA Data Visualization
+                                tool!<br />
+                                ==================================================
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <h3>How to Run the Application</h3>
+                        <ol style="margin-left: 20px; line-height: 1.6">
+                            <li>
+                                <strong
+                                    >Navigate to the project directory:</strong
+                                >
+                                <code>cd /path/to/COSC480/</code>
+                            </li>
+                            <li>
+                                <strong
+                                    >Ensure Python and dependencies are
+                                    installed:</strong
+                                >
+                                <code>pip install numpy matplotlib pandas</code>
+                            </li>
+                            <li>
+                                <strong>Run the enhanced code:</strong>
+                                <code>python ProjectCode_Enhanced.py</code>
+                            </li>
+                            <li>
+                                <strong>Follow the interactive prompts</strong>
+                                to select a team, season type, and statistic
+                            </li>
+                            <li>
+                                <strong
+                                    >View the generated visualization</strong
+                                >
+                                and summary statistics in the console
+                            </li>
+                            <li>
+                                <strong>Find exported files</strong> (PNG
+                                visualizations and CSV data) in the same
+                                directory
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>
+                    Created for COSC480 Data Analysis & Visualization Course |
+                    Your Name © 2023
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            // This script checks if the embedded notebook HTML exists and shows a fallback if not
+            document.addEventListener("DOMContentLoaded", function () {
+                const iframe = document.querySelector("iframe");
+
+                // Notebook fallback handling is now directly in the HTML
+                const notebookContainer = document.querySelector(
+                    ".notebook-container",
+                );
+
+                // Iframe error handling removed since we're no longer using iframe
+            });
+        </script>
+    </body>
+</html>

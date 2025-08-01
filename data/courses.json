@@ -1,0 +1,164 @@
+[
+  {
+    "id": "cosc480",
+    "code": "COSC480",
+    "title": "Data Visualization",
+    "year": "2021",
+    "description": [
+      "An introduction for graduate students to imperative computer programming using Python. Topics include: expressions, assignment, selection and iteration, structured data (lists, dictionaries, tuples, arrays), functional decomposition, file processing, using library code, and an introduction to object-oriented programming.",
+      "Students develop a significant piece of program code in a project that demonstrates mastery of programming for practical applications, typically in data science."
+    ],
+    "outcomes": [
+      "Fluently solve simple programming problems with a given programming language",
+      "Analyse programming code to predict program behaviour",
+      "Employ appropriate third-party programming libraries to deal with complex programming problems",
+      "Develop a program to cleanse data, including organising, identify trends and visualise data for ill-specified, complex data-science problems"
+    ]
+  },
+  {
+    "id": "data420",
+    "code": "DATA420",
+    "title": "Scalable Data Science",
+    "year": "2023",
+    "description": [
+      "This is a very practical course, with students learning by experimenting on cloud-based clusters with large datasets.",
+      "This course introduces topics in scalable data science based on distributed computing techniques. We look at principles of distributed computing, topics in statistical modelling, and applications of distributed machine learning to find scalable solutions for real problems."
+    ],
+    "outcomes": [
+      "Demonstrate knowledge of distributed computing and early development of Hadoop, MapReduce, and HDFS",
+      "Implement data processing using the MapReduce programming model",
+      "Implement data analysis in Spark using the Spark Python API and Spark SQL API",
+      "Develop solutions for real-world data science problems requiring statistical modeling and machine learning"
+    ]
+  },
+  {
+    "id": "data422",
+    "code": "DATA422",
+    "title": "Data Wrangling for Data Science",
+    "year": "2022",
+    "description": [
+      "Data comes in a variety of shapes and formats: text documents, images, tables, social network graphs, databases, webpages. Data wrangling is the process of reshaping data so that it can be more efficiently used.",
+      "The course aims to provide the students with the tools to handle different sources of data (csvs, spreadsheets, web pages, apis, …), some target formats (long / wide data frames, packages, …) and a variety of data kinds (dates, numeric, strings, text, …)."
+    ],
+    "outcomes": [
+      "Access (read in) different data formats",
+      "Interact (manipulate) relational dataset and hierarchical datasets",
+      "Output (write to) different data formats",
+      "Analyse a dataset in order to identify its format and possible errors",
+      "Analyse a data wrangling problem and develop a flow to transform data"
+    ]
+  },
+  {
+    "id": "data423",
+    "code": "DATA423",
+    "title": "Data Science in Industry",
+    "year": "2022",
+    "description": [
+      "This course is heavily focused on the \"applied\" side of data science rather than the theoretical. We use R as the language of choice.",
+      "There is an emphasis on three main themes: best statistical practice, communication through visualization, and problems typical of the real world."
+    ],
+    "outcomes": [
+      "Apply best statistical practices when analyzing data and producing models",
+      "Employ \"Shiny\" to visualize data science results through interactive web pages",
+      "Develop strategies for dealing with real-world data issues: missing data, useless variables, outliers, measurement uncertainty, etc.",
+      "Create effective data visualizations to communicate with non-technical stakeholders"
+    ]
+  },
+  {
+    "id": "data601",
+    "code": "DATA601",
+    "title": "Applied Data Science",
+    "year": "2023",
+    "description": [
+      "This project provides the skills and experience to work in a team to solve real world data science problems. The capstone project focuses on a holistic data exploration of LEGO sets, sentiments, and systems.",
+      "Project: LEGOscape: A Holistic Data Exploration of Sets, Sentiments, and Systems in the LEGO Universe. It involves updating the LEGO database, performing exploratory data analysis, creating visualizations, developing price prediction models, conducting sentiment analysis, and performing cluster and network analysis."
+    ],
+    "outcomes": [
+      "Update Database: Use the Kaggle dataset as a starting point and the Rebrickable API to update with current information",
+      "Exploratory Data Analysis: Examine distribution of LEGO sets across years, themes, and piece counts",
+      "Data Visualization: Build interactive dashboards to display LEGO statistics",
+      "Price Prediction Model: Develop a model to estimate resale prices of retired LEGO sets",
+      "Sentiment Analysis: Analyze customer reviews to extract sentiment patterns"
+    ]
+  },
+  {
+    "id": "digi405",
+    "code": "DIGI405",
+    "title": "Texts, Discourses and Data",
+    "year": "2021",
+    "description": [
+      "This course examines computer-aided methods used in digital humanities and the social sciences for analysing discourses. It introduces concepts and methods for analysing natural language data through a series of practical lab classes.",
+      "The course focuses on discourse analysis methods from corpus linguistics, topic modeling, and text classification methods to identify discursive attributes such as sentiment, genre, or style."
+    ],
+    "outcomes": [
+      "Apply exploratory data analysis methods relevant to the humanities to a corpus of texts",
+      "Preprocess text data and provide appropriate justification for preprocessing choices",
+      "Explain the social and cultural contexts of data analysis and interpretation practices",
+      "Identify ethical and political dimensions to discourse analysis and text mining methods"
+    ]
+  },
+  {
+    "id": "mbis623",
+    "code": "MBIS623",
+    "title": "Data Management",
+    "year": "2023",
+    "description": [
+      "MBIS623 introduces a range of topics that underpin the successful use and management of information in contemporary organisations, focusing on data governance, data modelling, database design, data administration, and data warehousing.",
+      "The course introduces the concepts of Big Data which drive many modern decision-making processes. Big Data technologies such as Hadoop and cloud-based analytics bring significant cost advantages when processing large amounts of data."
+    ],
+    "outcomes": [
+      "Demonstrate knowledge of the goals, principles and functions of data management",
+      "Design a data model using a standard industrial data modelling tool/notation",
+      "Implement a database using a standard industrial data management tool",
+      "Evaluate data management processes and practices in contemporary organisations"
+    ]
+  },
+  {
+    "id": "stat448",
+    "code": "STAT448",
+    "title": "Big Data",
+    "year": "2022",
+    "description": [
+      "STAT448 is suited to anyone with an interest in data, and how it can be used in decision making. This course introduces big data and techniques to access, explore and investigate it.",
+      "Students learn about the basic concepts of how and where Big Data arises, as well as data structures and mechanisms for the capture, storage, processing, summary and visualization of Big Data."
+    ],
+    "outcomes": [
+      "Understand the basic concepts of how and where Big Data arises",
+      "Describe data structures and mechanisms for the capture, storage, processing, summary and visualization of Big Data",
+      "Implement practical methods for data acquisition and management",
+      "Understand basic methods of analysis of Big Data, including machine learning for high dimensional data"
+    ]
+  },
+  {
+    "id": "stat455",
+    "code": "STAT455",
+    "title": "Data Collection and Sampling",
+    "year": "2023",
+    "description": [
+      "STAT455 is a course in survey methods, concentrating mainly on sample designs. The course is designed to give students an understanding of how to select samples from various types of populations and produce population estimates along with measures of uncertainties.",
+      "Students also gain insights into the practical applications of survey collection design, with focus on simple random sampling, stratified sampling and cluster sampling designs."
+    ],
+    "outcomes": [
+      "Describe and conduct appropriate statistical sampling techniques",
+      "Interpret model results in a way that non-users of statistics can understand",
+      "Use R competently for statistical analysis",
+      "Write scientific and technical reports about sampling methods and results"
+    ]
+  },
+  {
+    "id": "stat462",
+    "code": "STAT462",
+    "title": "Data Mining",
+    "year": "2021",
+    "description": [
+      "STAT462 is a course in statistical learning and data mining, suited to anyone with an interest in analysing data. The course introduces a variety of statistical learning and data mining techniques for supervised and unsupervised learning problems.",
+      "A range of methods for classification, regression, clustering and association purposes are covered, including decision trees, random forests, the Apriori algorithm and support vector machines. The lectures are supplemented with laboratory sessions using R."
+    ],
+    "outcomes": [
+      "Describe and conduct appropriate statistical analysis techniques",
+      "Interpret statistical results and draw meaningful conclusions from data",
+      "Use R to solve a variety of statistical learning and data mining problems",
+      "Apply techniques for regression, classification, cluster analysis and association analysis"
+    ]
+  }
+]

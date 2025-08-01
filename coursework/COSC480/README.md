@@ -7,8 +7,8 @@ An introduction for graduate students to imperative computer programming using P
 ## Learning Outcomes | Hua Akoranga
 
 - Fluently solve simple programming problems with a given programming language.
-- Analyse programming code to predict program behaviour.  
-- Employ appropriate third-party programming libraries to deal with complex programming problems.  
+- Analyse programming code to predict program behaviour.
+- Employ appropriate third-party programming libraries to deal with complex programming problems.
 - Develop a program to cleanse data, including organising, identify trends and visualise data for ill-specified, complex data-science problems.
 
 ## Syllabus/Topics
@@ -16,6 +16,7 @@ An introduction for graduate students to imperative computer programming using P
 This is an accelerated course aimed at graduate students without any prior programming background. It introduces the concepts of imperative programming, using Python, to develop programming skills aimed at data science-centred problems.
 
 Learners will develop their skills throughout the course through a project that involves data cleansing, data analysis and visualisation. Topics covered throughout the course to support the completion of this project include:
+
 - Expressions
 - Assignment
 - Selection and iteration
